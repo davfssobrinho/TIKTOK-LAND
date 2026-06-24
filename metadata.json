@@ -1,0 +1,6 @@
+{
+  "name": "Curso TikTok Shop AI - Landing Page",
+  "description": "Uma landing page profissional e de alta conversão para o curso de TikTok Shop com Inteligência Artificial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
