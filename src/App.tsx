@@ -20,8 +20,9 @@ export default function App() {
   const [showFloatingBar, setShowFloatingBar] = useState(false);
 
   const handleOpenCheckout = () => {
-    // Redireciona o usuário diretamente para a sua página ou checkout externo de afiliado
-    window.open(SALES_LINK, "_blank", "noopener,noreferrer");
+    // Redireciona o usuário diretamente na mesma janela para garantir 100% de compatibilidade
+    // com navegadores integrados de redes sociais (TikTok, Instagram, Facebook), evitando bloqueio de popups e perdas de cookies.
+    window.location.href = SALES_LINK;
   };
 
   const handleCloseCheckout = () => {
@@ -34,7 +35,7 @@ export default function App() {
       setShowFloatingBar(window.scrollY > 600);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -44,11 +45,11 @@ export default function App() {
 
   return (
     <div className="bg-[#020617] min-h-screen text-slate-100 font-sans antialiased selection:bg-purple-500/30 selection:text-slate-100">
-      {/* Premium background radial light anchors */}
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-[10%] left-[-20%] w-[80vw] h-[80vw] bg-purple-600/5 blur-[140px] rounded-full" />
-        <div className="absolute bottom-[10%] right-[-20%] w-[90vw] h-[90vw] bg-blue-600/5 blur-[150px] rounded-full" />
-        <div className="absolute top-[40%] right-[-10%] w-[50vw] h-[50vw] bg-emerald-500/3 blur-[130px] rounded-full" />
+      {/* Premium background radial light anchors - Optimized for mobile GPUs with transform-gpu and scale limits */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0 transform-gpu">
+        <div className="absolute top-[10%] left-[-20%] w-[80vw] h-[80vw] sm:w-[50vw] sm:h-[50vw] bg-purple-600/3 blur-[80px] sm:blur-[140px] rounded-full transform-gpu" />
+        <div className="absolute bottom-[10%] right-[-20%] w-[90vw] h-[90vw] sm:w-[60vw] sm:h-[60vw] bg-blue-600/3 blur-[90px] sm:blur-[150px] rounded-full transform-gpu" />
+        <div className="absolute top-[40%] right-[-10%] w-[50vw] h-[50vw] sm:w-[30vw] sm:h-[30vw] bg-emerald-500/2 blur-[80px] sm:blur-[130px] rounded-full transform-gpu" />
       </div>
 
       {/* Main Content Sections Wrapper */}
